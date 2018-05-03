@@ -1,0 +1,17 @@
+---
+- name: Update the repository cache "apt-get update"
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Safe upgrade "apt-get upgrade"
+  apt:
+    upgrade: yes
+
+- name: Ensure basic packages are installed
+  apt: name={{ item }} state=installed
+  with_items:
+    - aptitude
+    - git
+    - tree
+    - htop
